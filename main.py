@@ -8,19 +8,32 @@ import examples
 def Main(input: str) -> str:
     content = input.strip() + '\n'
     lexemes: list[str] = []
-    current: str = ''
-    for char in content:
-        if char == ' ' or char == '\'' or char == '\n':
-            if current != '':
-                lexemes.append(current)
-                current = ''
-            continue
+    char: str = ''
+    i: int = 0
+    word: str = ''
+    while (i < len(content)):
+        char = content[i]
+        if char == ' ':
+            if word != '':
+                lexemes.append(word)
+                word = ''
+        elif char == '\'':
+            if word != '':
+                lexemes.append(word)
+            lexemes.append('COMMA')
+            word = ''
+        elif char == '\n':
+            if word != '':
+                lexemes.append(word)
+            lexemes.append('EOL')
+            word = ''
         else:
-            current += char
+            word += char
+        i += 1
 
     print(lexemes)
-    result = f"{lexemes[0]}(\"{lexemes[1]}\"); "
-    return result
+    # result = f"{lexemes[0]}(\"{lexemes[1]}\"); "
+    return input
 
 
 if __name__ == '__main__':
