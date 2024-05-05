@@ -1,4 +1,5 @@
 
+
 def Main(input: str) -> str:
     content = input.strip() + '\n'
     tokens: list[str] = []
@@ -19,29 +20,7 @@ def Main(input: str) -> str:
     return f"{tokens[0]}(\"{tokens[1]}\"); "
 
 
-IN = \
-    """
-printf 'Hello, world!'
-"""
-
-
-OUT = \
-    """
-printf("Hello, world!");
-"""
-
-
-if __name__ == '__main__':
-    result = Main(IN).strip()
-    expected = OUT.strip()
-    if result == expected:
-        print('succeed')
-    else:
-        print('failed')
-        print('\n')
-        print('result:')
-        print(result)
-        print('\n')
-        print('expected:')
-        print(expected)
-        print('\n')
+# IN = \
+#     """
+# printf 'Hello, world!'
+# """
