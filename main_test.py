@@ -1,27 +1,16 @@
 import unittest
 from main import Main
+from examples import examples
 
 
 class MainTest(unittest.TestCase):
     """ Testing The Main Routine """
 
-    examples: list[list[str]] = [
-        [
-            """
-		printf 'Hello, world!'
-		""",
-            """
-		printf("Hello, world!");
-		"""
-        ],
-    ]
-
     def test_expected_output_from_input(self):
-        for example in self.examples:
+        for example in examples:
             result = Main(example[0]).strip()
             expected = example[1].strip()
-            self.assertEqual(expected, result,
-                             f"\nexpected:\n{expected}\nresult:\n{result}\n")
+            self.assertEqual(expected, result)
 
 
 if __name__ == '__main__':
