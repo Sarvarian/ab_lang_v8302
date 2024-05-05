@@ -13,7 +13,9 @@
 	"spellright.documentTypes": [
 		"markdown",
 		"latex",
-		"plaintext"
+		"plaintext",
+		"python",
+		"jsonc"
 	],
 	"editor.insertSpaces": false,
 	"editor.detectIndentation": false,
