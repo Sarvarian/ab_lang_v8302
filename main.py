@@ -31,9 +31,48 @@ def Main(input: str) -> str:
             word += char
         i += 1
 
-    print(lexemes)
+    body: list[list[str]] = []
+
+    i: int = 0
+    for lexeme in lexemes:
+        if len(body) <= i:
+            body.append([])
+
+        if lexeme == 'EOL':
+            i += 1
+        else:
+            body[i].append(lexeme)
+
+    root: list[list[str]] = []
+
+    for statement_old in body:
+        statement: list[str] = []
+        root.append(statement)
+        string_mode = False
+        string_array: list[str] = []
+        for lexeme in statement_old:
+            if lexeme == 'COMMA':
+                if string_mode == True:
+                    statement.append(' '.join(string_array))
+                    string_mode = False
+                else:
+                    string_mode = True
+            elif string_mode:
+                string_array.append(lexeme)
+            else:
+                statement.append(lexeme)
+
+    lines: list[str] = []
+
+    for statement in root:
+        if statement[0] == 'return':
+            lines.append(f'return {statement[1]};\n')
+        elif statement[0] == 'printf':
+            lines.append(f'printf(\"{statement[1]}\");\n')
+
+    # print(root)
     # result = f"{lexemes[0]}(\"{lexemes[1]}\"); "
-    return input
+    return ''.join(lines)
 
 
 if __name__ == '__main__':
