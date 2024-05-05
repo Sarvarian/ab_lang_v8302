@@ -65,7 +65,9 @@ def Main(input: str) -> str:
     lines: list[str] = []
 
     for statement in root:
-        if statement[0] == 'return':
+        if len(statement) < 1:
+            continue
+        elif statement[0] == 'return':
             lines.append(f'return {statement[1]};\n')
         elif statement[0] == 'printf':
             lines.append(f'printf(\"{statement[1]}\");\n')
